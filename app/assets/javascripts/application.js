@@ -14,3 +14,36 @@
 //= require jquery_ujs
 //= require d3
 //= require_tree .
+
+
+function disableButton() {
+  var saveButton = document.getElementById('save');
+  saveButton.onclick = function() {
+    this.disabled = true;
+  }
+}
+
+function displayLast(displayType) {
+  var lastAssociation = document.getElementById("associations").lastElementChild;
+  lastAssociation.style.display = displayType;
+}
+
+function hideOnDelete(deleteButton) {
+  deleteButton.parentElement.parentElement.parentElement.style.display = 'none';
+}
+
+
+$(function() {
+  $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
